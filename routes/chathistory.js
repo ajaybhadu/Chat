@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
     var db = req.db;
     var returnArray = [];
-    db.collection('chathistory').find().toArray(function (err, items) {
+    db.collection('chathistory').find().skip(5).toArray(function (err, items) {
         res.json(items);
     });
 });
