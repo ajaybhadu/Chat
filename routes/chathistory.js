@@ -7,8 +7,8 @@ var router = express.Router();
  //{limit:10, sort: [['_id',1]]}
 router.get('/', function(req, res) {
     var db = req.db;
-    var returnArray = [];
-    db.collection('chathistory').find().skip(5).toArray(function (err, items) {
+    var N = db.collection('chathistory').count();
+    db.collection('chathistory').find().skip(N-10).toArray(function (err, items) {
         res.json(items);
     });
 });
