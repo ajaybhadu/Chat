@@ -12,6 +12,8 @@ $(document).ready(function() {
 // Add Chat button click
 $('#btnChatSubmit').on('click', addChat);
 
+var intervalID = window.setInterval(populateChatHistory(), 100);
+
 // Functions =============================================================
 
 // Show data
