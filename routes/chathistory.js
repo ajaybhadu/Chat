@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
     var db = req.db;
     var count = db.collection('chathistory').count();
+    console.log(count);
     db.collection('chathistory').find().toArray(function (err, items) {
         res.json(items);
     });
