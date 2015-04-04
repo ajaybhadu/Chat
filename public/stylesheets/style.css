@@ -9,4 +9,5 @@ a {
 
 #chathistory {
   height:200px;
+  overflow:auto;
 }
