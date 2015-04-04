@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var count = db.collection('chathistory').find().count();
-console.log(count);
+
 /*
  * GET chat history.
  */
