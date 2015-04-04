@@ -16,6 +16,7 @@ var intervalID = setInterval(populateChatHistory, 100);
 
 // Functions =============================================================
 
+
 // Show data
 function populateChatHistory() {
 
