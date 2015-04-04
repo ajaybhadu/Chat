@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // Database
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516", {native_parser:true});
-
+//var mongo = require('mongoskin');
+//var db = mongo.db("mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516", {native_parser:true});
+var mongo = require('./mongoconnect.js');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var chathistory = require('./routes/chathistory')
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Make db accessible to router
 app.use(function(req,res,next){
-    req.db = db;
+    req.db = mongo.db();
     next();
 });
 
