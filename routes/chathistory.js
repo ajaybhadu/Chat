@@ -7,7 +7,7 @@ var router = express.Router();
  //{limit:10, sort: [['_id',1]]}
 router.get('/', function(req, res) {
     var db = req.db;
-    db.collection('chathistory').find({}, { text: { $slice: -10}}).skip(10).toArray(function (err, items) {
+    db.collection('chathistory').find({}, { text: { $slice: -10}}).toArray(function (err, items) {
         res.json(items);
     });
 });
