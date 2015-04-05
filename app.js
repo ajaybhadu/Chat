@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var chathistory = require('./routes/chathistory');
-var test = require('./routes/test');
+//var test = require('./routes/test');
 
 var mongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
