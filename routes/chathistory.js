@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
         ct = count
     });
 
-    db.collection('chathistory').find({},{limit:ct - 10}).toArray(function (err, items) {
+    db.collection('chathistory').find({},{skip:ct}).toArray(function (err, items) {
         res.json(items);
     });
 });
