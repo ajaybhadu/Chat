@@ -7,8 +7,12 @@ var router = express.Router();
  //
 router.get('/', function(req, res) {
     var db = req.db;
-    var count = db.collection('chathistory').count();
-    db.collection('chathistory').find({},{limit: 10}).toArray(function (err, items) {
+    var ct;
+    db.collection('chathistory').count(function(err, count) {
+        ct = count
+    });
+
+    db.collection('chathistory').find({},{skip: ct - 10}).toArray(function (err, items) {
         res.json(items);
     });
 });
