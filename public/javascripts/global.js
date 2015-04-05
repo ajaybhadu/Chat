@@ -8,6 +8,9 @@ $(document).ready(function() {
     populateChatHistory();
 
 });
+$('#chathistory').on('scroll',function(event) {
+      console.log( 'scrolled', $(this).text());
+});
 
 // Add Chat button click
 $('#btnChatSubmit').on('click', addChat);
