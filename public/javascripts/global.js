@@ -8,14 +8,18 @@ $(document).ready(function() {
     populateChatHistory();
 
 });
-$('#chathistory').on('scroll',function(event) {
-      console.log( 'scrolled', $(this).text());
+
+var intervalID = setInterval(populateChatHistory, 100);
+
+$('#newChat').keypress(function (e) {
+    if (e.which == 13) {
+        addChat(e);
+        return false;
+    }
 });
 
 // Add Chat button click
 $('#btnChatSubmit').on('click', addChat);
-
-var intervalID = setInterval(populateChatHistory, 100);
 
 // Functions =============================================================
 
