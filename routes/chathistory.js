@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
     });
 
     db.collection('chathistory').find().sort({_id:-1}).limit(5).toArray(function (err, items) {
+        items.reverse();
         res.json(items);
     });
 });
