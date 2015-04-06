@@ -15,8 +15,8 @@ var test = require('./routes/test');
 
 var mongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://localhost:27017/chat';
-//var url = 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
+//var url = 'mongodb://localhost:27017/chat';
+var url = 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
 
 var app = express();
 var myDB;
