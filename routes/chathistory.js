@@ -12,8 +12,8 @@ router.get('/', function(req, res) {
         ct = count - 10
     });
 
-    db.collection('chathistory').find().sort({_id:-1}).limit(5).toArray(function (err, items) {
-        items.reverse();
+    db.collection('chathistory').find().sort({_id:-1}).limit(10).toArray(function (err, items) {
+        //items.reverse();
         res.json(items);
     });
 });
