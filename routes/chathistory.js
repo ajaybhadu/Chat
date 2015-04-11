@@ -8,7 +8,8 @@ var mymongo = require('../model');
  //
 router.get('/', function(req, res) {
     var db = mymongo.getDB();
-    db.collection('chathistory').find().limit(50).toArray(function (err, items) {
+    db.collection('chathistory').find().sort({"_id" : -1}).limit(50).toArray(function (err, items) {
+        items.reverse();
         res.json(items);
     });
 });

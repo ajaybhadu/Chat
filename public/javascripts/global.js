@@ -1,9 +1,7 @@
-// Userlist data array for filling in info box
-var chatHistoryData = [];
+// area for showing previous chat messages
 var $messages = $('#messages');
 // DOM Ready =============================================================
 $(document).ready(function() {
-
     // Populate the user table on initial page load
     populateChatHistory();
 
@@ -23,10 +21,6 @@ $('#inputMessage').keypress(function (e) {
 
 // Show chat history
 function populateChatHistory() {
-
-    // Empty content string
-    var content = '';
-
     // jQuery AJAX call for JSON
     $.getJSON( '/chathistory', function( data ) {
         $messages.empty();
@@ -41,7 +35,7 @@ function populateChatHistory() {
         $messages[0].scrollTop = $messages[0].scrollHeight;
     });
 };
-
+/*
 function getChatHistoryPage(currPage, clickedLink) {
 
     // This would probably be an AJAX call in a real app.
@@ -87,7 +81,7 @@ function getChatHistoryPage(currPage, clickedLink) {
     //$('#contentDiv').html('This is Page ' + currPage);
     $('#chatHistory').attr('data-page', currPage);
 }
-
+*/
 // Add new message
 function addChat(event) {
     event.preventDefault();
@@ -100,14 +94,14 @@ function addChat(event) {
     if(errorCount === 0) {
 
         // If it is, compile all user info into one object
-        var newUser = {
+        var newChat = {
             'text': $('#inputMessage').val()
         }
 
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
-            data: newUser,
+            data: newChat,
             url: '/chathistory',
             dataType: 'JSON'
         }).done(function( response ) {
