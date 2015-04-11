@@ -11,7 +11,8 @@ var chathistory = require('./routes/chathistory');
 
 // Database
 var mymongo = require('./model');
-var url = 'mongodb://localhost:27017/chat' || 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
+//var url = 'mongodb://localhost:27017/chat';
+var url = 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
 
 var app = express();
 
@@ -30,12 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Make db accessible to router
 mymongo.myconnect(url);
-/*
-app.use(function(req,res,next){
-    req.db = mymongo.getDB();
-    next();
-});
-*/
 
 app.use('/', routes);
 app.use('/chathistory', chathistory);

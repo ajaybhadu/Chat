@@ -7,15 +7,8 @@ var mymongo = require('../model');
  */
  //
 router.get('/', function(req, res) {
-    //var db = req.db;
     var db = mymongo.getDB();
-    var ct;
-    db.collection('chathistory').count(function(err, count) {
-        ct = count - 10
-    });
-
     db.collection('chathistory').find().limit(50).toArray(function (err, items) {
-        //items.reverse();
         res.json(items);
     });
 });
