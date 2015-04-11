@@ -4,22 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// Database
-//var mongo = require('mongoskin');
-//var db = mongo.db("mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516", {native_parser:true});
-//var mongoconnect = require('./mongoconnect.js');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var chathistory = require('./routes/chathistory');
-var test = require('./routes/test');
 
-var mongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-//var url = 'mongodb://localhost:27017/chat';
-var url = 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
+// Database
+var mymongo = require('./model');
+var url = 'mongodb://localhost:27017/chat' || 'mongodb://heroku_app35497516:hs9rcp1ubilun0t5hov8u4tvl3@ds059821.mongolab.com:59821/heroku_app35497516';
 
 var app = express();
-var myDB;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,22 +27,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    myDB = db;
-    //db.close();
-});
 
 // Make db accessible to router
+mymongo.myconnect(url);
+/*
 app.use(function(req,res,next){
-    //req.db = mongoconnect.getChatHistory();
-    req.db = myDB;
+    req.db = mymongo.getDB();
     next();
 });
+*/
 
 app.use('/', routes);
 app.use('/chathistory', chathistory);
-app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

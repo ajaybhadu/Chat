@@ -1,17 +1,8 @@
 extends layout
 
 block content
-    h1= title
-    #addchat
-            fieldset
-                input#newChat(type='text', placeholder='Type here and press Enter')
-                br
-                button#btnChatSubmit OK
-
-    div#chathistory(data-page="0")
-
-    //ul#pagination
-        //li.prev
-            //a(class='pagelink', href='#', title='Show Previous', data-linktype='prev') Previous
-        //li.next
-            //a(class='pagelink', href='#', title='Show Next', data-linktype='next') Next
+    ul.pages
+        li(class="chat page")
+            div#chatHistory
+                ul#messages
+            input#inputMessage(type='text', placeholder='Type here and press Enter')

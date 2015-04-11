@@ -1,6 +1,6 @@
 // Userlist data array for filling in info box
 var chatHistoryData = [];
-
+var $messages = $('#messages');
 // DOM Ready =============================================================
 $(document).ready(function() {
 
@@ -9,39 +9,19 @@ $(document).ready(function() {
 
 });
 
-var intervalID = setInterval(populateChatHistory, 100);
+//var intervalID = setInterval(populateChatHistory, 100);
 
-$('#newChat').keypress(function (e) {
+$('#inputMessage').keypress(function (e) {
     if (e.which == 13) {
         addChat(e);
         return false;
     }
 });
 
-// Add Chat button click
-$('#btnChatSubmit').on('click', addChat);
-/*
-$('#pagination').on('click', 'a.pagelink', function(e) {
-
-        e.preventDefault();
-
-        // Get the current data-page attribute
-        var currPage = $('#chathistory').attr('data-page');
-        var clickedLink = $(this).attr('data-linktype');
-
-        // Change Content
-        getChatHistoryPage(currPage, clickedLink);
-
-});*/
-/*
-$('#chathistory').on('scroll', function(e) {
-    console.log($('#chathistory').height());
-    console.log($('#chathistory').scrollTop() + $('#addchat').height());
-});*/
 // Functions =============================================================
 
 
-// Show data
+// Show chat history
 function populateChatHistory() {
 
     // Empty content string
@@ -49,16 +29,16 @@ function populateChatHistory() {
 
     // jQuery AJAX call for JSON
     $.getJSON( '/chathistory', function( data ) {
-
+        $messages.empty();
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
-            content += '<p>';
-            content += this.text;
-            content += '</p>'
+            var $messageBodyDiv = $('<span class="messageBody">')
+                .text(this.text);
+            var $messageDiv = $('<li class="message"/>')
+                .append($messageBodyDiv);
+          $messages.append($messageDiv);
         });
-
-        // Inject the whole content string into our existing HTML table
-        $('#chathistory').html(content);
+        $messages[0].scrollTop = $messages[0].scrollHeight;
     });
 };
 
@@ -102,28 +82,26 @@ function getChatHistoryPage(currPage, clickedLink) {
         });
 
         // Inject the whole content string into our existing HTML table
-        $('#chathistory').html(content);
+        $('#chatHistory').html(content);
     });
     //$('#contentDiv').html('This is Page ' + currPage);
-    $('#chathistory').attr('data-page', currPage);
+    $('#chatHistory').attr('data-page', currPage);
 }
 
-// Add User
+// Add new message
 function addChat(event) {
     event.preventDefault();
 
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
-    $('#addchat input').each(function(index, val) {
-        if($(this).val() === '') { errorCount++; }
-    });
+    if($('#inputMessage').val() === '') { errorCount++; }
 
     // Check and make sure errorCount's still at zero
     if(errorCount === 0) {
 
         // If it is, compile all user info into one object
         var newUser = {
-            'text': $('#addchat fieldset input#newChat').val()
+            'text': $('#inputMessage').val()
         }
 
         // Use AJAX to post the object to our adduser service
@@ -138,7 +116,7 @@ function addChat(event) {
             if (response.msg === '') {
 
                 // Clear the form inputs
-                $('#addchat fieldset input').val('');
+                $('#inputMessage').val('');
 
                 // Update the table
                 populateChatHistory();

@@ -1,24 +1,86 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+    box-sizing: border-box;         /* Safari 5.1+, Chrome 10+, Firefox 29+, Opera 7+, IE 8+, Android 4.0+, iOS any */
 }
 
-a {
-  color: #00B7FF;
+html {
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
 }
 
-#chathistory {
-  height:200px;
-  overflow:auto;
-	border:1px solid black;
+html, input {
+    font-family:
+        "HelveticaNeue-Light",
+        "Helvetica Neue Light",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        "Lucida Grande",
+        sans-serif;
 }
 
-
-#newChat {
-  width:1000px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-ul#pagination li {
-    display:inline-block;
-    margin-right:20px;
+ul {
+    list-style: none;
+    word-wrap: break-word;
+}
+
+/* Pages */
+
+.pages {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.page {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+/* Font */
+
+#messages {
+    font-size: 150%;
+}
+
+#inputMessage {
+    font-size: 100%;
+}
+
+/* Messages */
+
+#chatHistory {
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+#messages {
+    height: 100%;
+    margin: 0;
+    overflow-y: scroll;
+    padding: 10px 20px 10px 20px;
+}
+
+.messageBody {
+    color: gray;
+}
+/* Input */
+
+#inputMessage {
+    border: 10px solid orange;
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    outline: none;
+    padding-left: 10px;
+    position: absolute;
+    right: 0;
+    width: 100%;
 }
