@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 });
 
-//var intervalID = setInterval(populateChatHistory, 100);
+var intervalID = setInterval(populateChatHistory, 500);
 
 $('#inputMessage').keypress(function (e) {
     if (e.which == 13) {
