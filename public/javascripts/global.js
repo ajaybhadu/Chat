@@ -1,3 +1,5 @@
+/* code inspired by this tutorial: http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/ */
+
 // area for showing previous chat messages
 var $messages = $('#messages');
 // DOM Ready =============================================================

@@ -1,3 +1,5 @@
+/* code inspired by tutorial here: http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/ */
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
